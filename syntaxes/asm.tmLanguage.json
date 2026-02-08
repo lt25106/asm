@@ -1,0 +1,27 @@
+{
+  "scopeName": "source.asm",
+  "patterns": [
+    {
+      "name": "keyword",
+      "match": "(j(mp|l|g|e)|div|add|call|ret|((inc|push|mov|sub|lea|cmp)(q|l)))"
+    },
+    {
+      "name": "variable.readonly",
+      "match": "(%(al|bl|cl|dl|ah|bh|ch|dh|ax|bx|cx|dx|eax|ebx|ecx|edx|rax|rbx|rcx|rdx|sp|bp|si|di|rsp|rbp|rsi|rdi|rip))|(\\b\\d+)\\b|main"
+    },
+    {
+      "name": "storage",
+      "match": "\\.(text|globl|macro|endm|string|long|data|seh_(endproc|proc|pushreg|stackalloc|setframe|endprologue))"
+    },
+    {
+      "name": "comment",
+      "begin": "#",
+      "end": "$"
+    },
+    {
+      "name": "string",
+      "begin": "\"",
+      "end": "\""
+    }
+  ]
+}
