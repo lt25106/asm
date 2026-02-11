@@ -1,4 +1,4 @@
-import typescriptEslint from "typescript-eslint";
+import typescriptEslint from "typescript-eslint"
 
 export default [{
     files: ["**/*.ts"],
@@ -24,4 +24,4 @@ export default [{
         semi: ["error", "never"],
         "no-unexpected-multiline": "error"
     },
-}];
+}]
