@@ -1,5 +1,7 @@
 {
   "scopeName": "source.asm",
+  "editor.bracketPairColorization.enabled": true,
+  "editor.guides.bracketPairs": "active",
   "patterns": [
     {
       "name": "keyword",
@@ -7,7 +9,11 @@
     },
     {
       "name": "variable.readonly",
-      "match": "(%(al|bl|cl|dl|ah|bh|ch|dh|ax|bx|cx|dx|eax|ebx|ecx|edx|rax|rbx|rcx|rdx|sp|bp|si|di|rsp|rbp|rsi|rdi|rip))|(\\b\\d+)\\b|main"
+      "match": "\\b\\d+\\b"
+    },
+    {
+      "name": "variable.readonly",
+      "match": "%([abcd][lh]|[re]?[abcd]x|r[bsi]p|r(8|9|1[0-5])[dwb]?|[re]?[ds]il?)"
     },
     {
       "name": "storage",
@@ -22,6 +28,11 @@
       "name": "string",
       "begin": "\"",
       "end": "\""
+    },
+    {
+      "name": "string",
+      "begin": "'",
+      "end": "'"
     }
   ]
 }
