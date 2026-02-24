@@ -5,7 +5,7 @@
   "patterns": [
     {
       "name": "keyword",
-      "match": "(j(mp|l|g|e)|div|add|call|ret|((inc|push|mov|sub|lea|cmp)(q|l)))"
+      "match": "(j(mp|l|g|e)|div|add|call|ret|((inc|push|mov|sub|lea|cmp|xor)[qlwb]))"
     },
     {
       "name": "variable.readonly",
@@ -17,7 +17,7 @@
     },
     {
       "name": "storage",
-      "match": "\\.(text|globl|macro|endm|string|long|data|seh_(endproc|proc|pushreg|stackalloc|setframe|endprologue))"
+      "match": "\\.(text|globl|macro|endm|byte|short|long|quad|string|data|seh_(endproc|proc|pushreg|stackalloc|setframe|endprologue))"
     },
     {
       "name": "comment",

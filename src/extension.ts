@@ -23,7 +23,10 @@ export function activate(context: vscode.ExtensionContext) {
 	const string = /[re]?[ds]il?/.source
 	const special = /r[bsi]p/.source
 	const nnew = /r(8|9|1[0-5])[dwb]?/.source
-	const registeregex = new RegExp(`%(${bit8}|${general}|${special}|${nnew}|${string})`, "i")
+	const registeregex = new RegExp(
+		`(?=\\W|$)%(${bit8}|${general}|${special}|${nnew}|${string})(?=\\W|$)`,
+		"i"
+	)
 	// Use the console to output diagnostic information (console.log) and errors (console.error)
 	// This line of code will only be executed once when your extension is activated
 	// console.log('Congratulations, your extension "asm" is now active!')
@@ -54,19 +57,19 @@ export function activate(context: vscode.ExtensionContext) {
 				asmlabels.get(filepath)?.set(trimmedLine.replace(/:$/, ""), i)
 			
 			if (trimmedLine.startsWith(".data"))
-				for (let j = i + 1; !filecontents[j].startsWith("."); j++) {
-				const match = filecontents[j].match(/^\s*([a-zA-Z_0-9]+):\s*(\.[a-z]+)\s+(.*)/i)
-				if (!match) continue
-				const [_, varname, type, value] = match
-				// vscode.window.showInformationMessage(`${varname} | ${type} | ${value}`)
-				const datainfo: datainfo = {
-					body: filecontents[j],
-					line: j,
-					type,
-					value,
+				for (let j = i + 1; !filecontents[j].match(/^\.\S.*[^:]\s*$/); j++) {
+					const match = filecontents[j].match(/^\s*([a-zA-Z_0-9]+):\s*(\.[a-z]+)\s+(.*)/i)
+					if (!match) continue
+					const [_, varname, type, value] = match
+					// vscode.window.showInformationMessage(`${varname} | ${type} | ${value}`)
+					const datainfo: datainfo = {
+						body: filecontents[j],
+						line: j,
+						type,
+						value,
+					}
+					asmdata.get(filepath)?.set(varname, datainfo)
 				}
-				asmdata.get(filepath)?.set(varname, datainfo)
-			}
 			
 			if (!trimmedLine.startsWith('.macro')) continue
 			
@@ -182,6 +185,7 @@ export function activate(context: vscode.ExtensionContext) {
 			provideHover(document, position) {
 				// Get the word currently under the mouse
 				const range = document.getWordRangeAtPosition(position)
+				if (!range) return
 				const word = document.getText(range)
 				const filepath = document.fileName
 				
@@ -199,8 +203,10 @@ export function activate(context: vscode.ExtensionContext) {
 				const regword = "%" + word
 				const isregister = regword.match(registeregex)
 				if (isregister) {
+					const desc = regmap[isregister[0].toLowerCase()]
+					// vscode.window.showInformationMessage(word)
 					const contents = new vscode.MarkdownString()
-					contents.appendMarkdown(`# ${regword}\n${regmap[isregister[0].toLowerCase()]}`)
+					contents.appendMarkdown(`# ${regword}\n${desc}`)
 					return new vscode.Hover(contents)
 				}
 				

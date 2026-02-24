@@ -1,0 +1,35 @@
+name: Generate VSIX
+
+on:
+  push:
+    branches:
+      - main  # Triggered every time you push to main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Install Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install Dependencies
+        run: npm install
+
+      - name: Install VSCE
+        run: npm install -g @vscode/vsce
+
+      - name: Package Extension
+        # This creates the .vsix file
+        run: vsce package --no-dependencies
+
+      - name: Upload VSIX Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: extension-vsix
+          path: "*.vsix"
