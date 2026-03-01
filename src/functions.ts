@@ -70,25 +70,25 @@ export const regmap: Record<string, string> = {
 	"%bl":  "(8 bits) Lower 8 bits of %rbx.",
 	"%bh":  "(8 bits) Bits 8-15 of %rbx.",
 	
-	"%rcx": "(64 bits) Counter. Used for loops, strings, and the 4th function argument.",
+	"%rcx": "(64 bits) Counter. Used for loops, strings, the 4th function argument on Linux, and the 1st function argument on Windows.",
 	"%ecx": "(32 bits) Lower 32 bits of %rcx. ⚠️ Writing to this zero-extends to %rcx.",
 	"%cx":  "(16 bits) Lower 16 bits of %rcx.",
 	"%cl":  "(8 bits) Lower 8 bits of %rcx.",
 	"%ch":  "(8 bits) Bits 8-15 of %rcx.",
 	
-	"%rdx": "(64 bits) Data. Used for I/O, mul/div, and the 3rd function argument.",
+	"%rdx": "(64 bits) Data. Used for I/O, mul/div, the 3rd function argument on Linux, and the 2nd function argument on Windows.",
 	"%edx": "(32 bits) Lower 32 bits of %rdx. ⚠️ Writing to this zero-extends to %rdx.",
 	"%dx":  "(16 bits) Lower 16 bits of %rdx.",
 	"%dl":  "(8 bits) Lower 8 bits of %rdx.",
 	"%dh":  "(8 bits) Bits 8-15 of %rdx.",
 	
 	// --- Index and Pointer ---
-	"%rsi": "(64 bits) Source Index. Used for string operations and the 2nd function argument.",
+	"%rsi": "(64 bits) Source Index. Used for string operations and the 2nd function argument on Linux.",
 	"%esi": "(32 bits) Lower 32 bits of %rsi. ⚠️ Writing to this zero-extends to %rsi.",
 	"%si":  "(16 bits) Lower 16 bits of %rsi.",
 	"%sil": "(8 bits) Lower 8 bits of %rsi.",
 	
-	"%rdi": "(64 bits) Destination Index. Used for string operations and the 1st function argument.",
+	"%rdi": "(64 bits) Destination Index. Used for string operations and the 1st function argument on Linux.",
 	"%edi": "(32 bits) Lower 32 bits of %rdi. ⚠️ Writing to this zero-extends to %rdi.",
 	"%di":  "(16 bits) Lower 16 bits of %rdi.",
 	"%dil": "(8 bits) Lower 8 bits of %rdi.",
@@ -106,12 +106,12 @@ export const regmap: Record<string, string> = {
 	"%rip": "(64 bits) Instruction Pointer. Points to the next instruction to execute.",
 	
 	// --- Numbered Registers (R8-R15) ---
-	"%r8":  "(64 bits) General purpose. Used as the 5th function argument.",
+	"%r8":  "(64 bits) General purpose. Used as the 5th function argument on Linux and 3rd on Windows.",
 	"%r8d": "(32 bits) Lower 32 bits of %r8. ⚠️ Writing to this zero-extends to %r8.",
 	"%r8w": "(16 bits) Lower 16 bits of %r8.",
 	"%r8b": "(8 bits) Lower 8 bits of %r8.",
 	
-	"%r9":  "(64 bits) General purpose. Used as the 6th function argument.",
+	"%r9":  "(64 bits) General purpose. Used as the 6th function argument on Linux and 4th on Windows.",
 	"%r9d": "(32 bits) Lower 32 bits of %r9. ⚠️ Writing to this zero-extends to %r9.",
 	"%r9w": "(16 bits) Lower 16 bits of %r9.",
 	"%r9b": "(8 bits) Lower 8 bits of %r9.",
@@ -145,4 +145,5 @@ export const regmap: Record<string, string> = {
 	"%r15d": "(32 bits) Lower 32 bits of %r15. ⚠️ Writing to this zero-extends to %r15.",
 	"%r15w": "(16 bits) Lower 16 bits of %r15.",
 	"%r15b": "(8 bits) Lower 8 bits of %r15."
+
 }
