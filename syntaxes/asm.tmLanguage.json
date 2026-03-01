@@ -17,7 +17,7 @@
     },
     {
       "name": "storage",
-      "match": "\\.(text|globl|macro|endm|byte|short|long|quad|string|data|seh_(endproc|proc|pushreg|stackalloc|setframe|endprologue))"
+      "match": "\\.(equ|set|text|globl|macro|endm|byte|short|long|quad|string|data|seh_(endproc|proc|pushreg|stackalloc|setframe|endprologue))"
     },
     {
       "name": "comment",
@@ -36,3 +36,4 @@
     }
   ]
 }
+
